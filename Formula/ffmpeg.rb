@@ -9,7 +9,7 @@ class Ffmpeg < Formula
     rebuild 1
     cellar :any_skip_relocation
     root_url "https://jeroen.github.io/bottles"
-    sha256 "cd66055379065a5e0753e02ec90a1d8b00391a5b1bcec17c3eeb2c3f82749b54" => :el_capitan
+    sha256 "d3db932d17115abb7e6c6895fdd8c8799ae3adfcfd4da568a84cfdf504241225" => :el_capitan
   end
 
   depends_on "nasm" => :build
@@ -20,7 +20,6 @@ class Ffmpeg < Formula
   depends_on "libvorbis"
   depends_on "libvpx"
   depends_on "x264"
-  depends_on "x265"
   depends_on "xvid"
 
   def install
@@ -40,7 +39,6 @@ class Ffmpeg < Formula
       --enable-libvorbis
       --enable-libvpx
       --enable-libx264
-      --enable-libx265
       --enable-libxvid
     ]
 
