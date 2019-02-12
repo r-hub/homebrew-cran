@@ -6,9 +6,10 @@ class Ffmpeg < Formula
   head "https://github.com/FFmpeg/FFmpeg.git"
 
   bottle do
+    rebuild 1
     cellar :any_skip_relocation
     root_url "https://jeroen.github.io/bottles"
-    sha256 "78212ce70580b06abbf93d444d1c7c77d3fa578954c9fffc8bfa390a6824992d" => :el_capitan
+    sha256 "cd66055379065a5e0753e02ec90a1d8b00391a5b1bcec17c3eeb2c3f82749b54" => :el_capitan
   end
 
   depends_on "nasm" => :build
