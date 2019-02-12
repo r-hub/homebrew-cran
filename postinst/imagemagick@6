@@ -1,0 +1,14 @@
+#!/bin/sh
+# Bottle is keg-only
+$BREW link --force imagemagick@6
+
+# Fix pkg-config
+export EXTRA_PKG_CONFIG_LIBS="libpng libcroco-0.6 pangocairo gmodule-2.0 fribidi"
+
+# Copy configuration files
+mkdir -p ${PKG_EXTRA}/etc
+cp -r $BREWDIR/etc/fonts ${PKG_EXTRA}/etc/
+
+# Fix hardcoded cache dir
+sed -i.bak "s#<cachedir>.*/var/cache/fontconfig#<cachedir>~/Library/Caches/magick#" ${PKG_EXTRA}/etc/fonts/fonts.conf
+rm -f ${PKG_EXTRA}/etc/fonts/*.bak

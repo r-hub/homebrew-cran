@@ -1,0 +1,3 @@
+#!/bin/sh
+${BREWDIR}/bin/odbc_config "$@" \
+	| sed 's#-lodbc#-lodbc -lltdl#g'

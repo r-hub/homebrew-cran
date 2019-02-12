@@ -1,0 +1,40 @@
+#!/bin/sh
+set -e
+SANDBOX="$1"
+if [ -z "$SANDBOX" ]; then
+	echo "Example usage: $(basename $0) ~/mysandbox"
+	exit 1
+fi
+SYSTEM_MOUNT="/Library /System /bin /etc /opt /tmp /var /usr/lib /usr/libexec /usr/include /usr/share"
+USER_MOUNT="/usr/local"
+RUN_R=$(readlink $(which R))
+
+make_sandbox(){
+mkdir -p ${SANDBOX}
+for dir in $SYSTEM_MOUNT; do
+	mkdir -p "${SANDBOX}${dir}"
+	bindfs $dir "${SANDBOX}${dir}"
+done
+for dir in $USER_MOUNT; do
+	mkdir -p "${SANDBOX}${dir}"
+	mkdir -p "${HOME}${dir}"
+	bindfs "${HOME}${dir}" "${SANDBOX}${dir}"
+done
+}
+
+cleanup_sandbox(){
+for dir in $SYSTEM_MOUNT $USER_MOUNT; do
+    umount "${SANDBOX}${dir}"
+    rmdir "${SANDBOX}${dir}"
+    rmdir "${SANDBOX}/usr"
+done
+}
+
+start_r_sandbox(){
+	make_sandbox
+	sudo chroot $SANDBOX $RUN_R
+}
+
+# Start
+trap cleanup_sandbox EXIT
+start_r_sandbox

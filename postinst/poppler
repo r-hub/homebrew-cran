@@ -1,0 +1,7 @@
+#!/bin/sh
+export EXTRA_PKG_CONFIG_LIBS="cairo lcms2 libopenjp2 libtiff-4"
+
+# Copy poppler-data share
+mkdir -p ${PKG_EXTRA}/share
+cp -r $BREWDIR/share/poppler ${PKG_EXTRA}/share/
+PKG_CFLAGS="$PKG_CFLAGS -DBUNDLE_POPPLER_DATA"

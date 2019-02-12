@@ -1,0 +1,7 @@
+#!/bin/sh
+# Masks 'pkg-config' from PATH to always use static options
+if [[ "$@" == *"--libs"* ]]; then
+${BREWDIR}/opt/pkg-config/bin/pkg-config --static "$@" "$EXTRA_PKG_CONFIG_LIBS"
+else
+${BREWDIR}/opt/pkg-config/bin/pkg-config "$@"
+fi

@@ -1,0 +1,13 @@
+#!/bin/sh
+if [[ "$@" == *"--dep-libs"* ]]; then
+GDAL_DEP_LIBS=$(${BREWDIR}/bin/gdal-config "$@" \
+	| sed "s#-lcrypto#-L${BREWDIR}/opt/openssl/lib -lssl -lcrypto#g" \
+	| sed "s#-lxerces-c #-lxerces-c-3.2 #g")
+GDAL_EXTRA_LIBS="-lssl -lcrypto -lgeos_c -lgeos -lltdl -lxml2 -lsqlite3"
+GDAL_MACOS_LIBS="-framework CoreFoundation -framework CoreServices"
+GDAL_ALL_LIBS="$GDAL_DEP_LIBS $GDAL_EXTRA_LIBS $GDAL_MACOS_LIBS"
+>&2 printf "\nAutobrew linking with:\n$GDAL_ALL_LIBS\n"
+echo "$GDAL_ALL_LIBS"
+else
+${BREWDIR}/bin/gdal-config "$@"
+fi

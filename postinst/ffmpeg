@@ -1,0 +1,3 @@
+#!/bin/sh
+# In current homebrew this is needed to install our pinned bottle 
+export EXTRA_PKG_CONFIG_LIBS="vorbis"

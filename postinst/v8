@@ -1,0 +1,5 @@
+#!/bin/sh
+# lib8 doens't support pkg-config and also doesn't have a normal static lib :/
+ln -sf "${BREWDIR}/opt/v8/lib/libv8_base.a" "${BREWDIR}/opt/v8/lib/libv8.a"
+export INCLUDE_DIR="$BREWDIR/opt/v8/include"
+export LIB_DIR="$BREWDIR/opt/v8/lib -lv8_{base,libplatform,nosnapshot,libbase,libsampler,initializers,init} -ltorque_{base,generated_initializers}"

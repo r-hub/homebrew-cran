@@ -1,0 +1,8 @@
+#!/bin/sh
+# Temp Workaround for https://github.com/DanBloomberg/leptonica/issues/386
+export EXTRA_PKG_CONFIG_LIBS="libopenjp2"
+
+#$BREW install tesseract --HEAD
+mkdir -p ${PKG_EXTRA}/tessdata
+cp -f $BREWDIR/opt/tesseract/share/tessdata/eng.traineddata ${PKG_EXTRA}/tessdata/
+cp -f $BREWDIR/opt/tesseract/share/tessdata/osd.traineddata ${PKG_EXTRA}/tessdata/

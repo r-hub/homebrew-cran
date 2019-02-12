@@ -1,0 +1,4 @@
+#!/bin/sh
+# Alternatively configure package with: 
+# --with-data-copy --with-proj-data=/usr/local/opt/proj/share/proj
+cp -RLf ${BREWDIR}/share/{proj,gdal} ${PKG_EXTRA}/

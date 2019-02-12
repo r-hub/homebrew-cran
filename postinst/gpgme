@@ -1,0 +1,17 @@
+#!/bin/sh
+# Hack: include a copy of 'gpg1' and 'pinentry'
+$BREW install gnupg@1.4
+$BREW unlink gnupg || true
+
+# Build a standalone pinentry (disabled: custom bottle is already standalone)
+#rename -g "s/\.dylib$/\.dylib-bak/" ${BREWDIR}/Cellar/libassuan/*/lib/*.dylib
+#rename -g "s/\.dylib$/\.dylib-bak/" ${BREWDIR}/Cellar/libgpg-error/*/lib/*.dylib
+#$BREW install pinentry --build-from-source
+
+# Copy to binary package (TOOD: declare in 'BinaryFiles' file)
+mkdir -p ${PKG_EXTRA}/bin
+cp -f $BREWDIR/opt/gnupg@1.4/bin/gpg1 ${PKG_EXTRA}/bin/gpg
+cp -f $BREWDIR/opt/pinentry/bin/pinentry ${PKG_EXTRA}/bin/pinentry
+
+#export PATH="${PKG_EXTRA}/bin:$PATH"
+#EXTRA_BUILD_FLAGS="--no-test-load"

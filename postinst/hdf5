@@ -1,0 +1,3 @@
+#!/bin/sh
+H5CONF=$(${BREWDIR}/opt/hdf5/bin/h5c++ -show)
+export LIBS+="-L${H5CONF#*-L}"

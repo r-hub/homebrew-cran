@@ -1,0 +1,2 @@
+#!/bin/sh
+export EXTRA_PKG_CONFIG_LIBS="libcroco-0.6 pangocairo fribidi"

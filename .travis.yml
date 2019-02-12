@@ -1,0 +1,48 @@
+language: r
+cache: packages
+latex: false
+pandoc: false
+fortran: false
+os: osx
+
+env:
+  global:
+  - MAKEFLAGS="-j8"
+
+before_install: 
+  - brew uninstall --ignore-dependencies gnupg || true # workaround for boken travis
+  - brew remove $(brew list)
+  - brew update
+  - brew install gcc && brew unlink gcc # conflicting 'gfortran'
+  - brew install python && brew unlink python
+  - brew install python@2 && brew unlink python@2
+  - brew install numpy || true && brew unlink numpy
+
+install:
+  - brew tap r-hub/cran
+  - brew install autobrew
+
+script:
+  - autobrew --test --repo=binaries
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+matrix:
+  include:
+    - osx_image: xcode9.4 # High sierra
+      before_script:
+        - brew cask install gfortran
+    - osx_image: xcode8.3 # Note: xcode 9.x has linker issues on OS X 10.12
+      before_script:
+        - brew cask install gfortran
+#    - osx_image: xcode7.3 # El Capitain
+#      before_script:
+#        - brew cask install gfortran
+#    - osx_image: xcode7.3
+#      before_script:  # doesn't work because gcc/clang 'ld' conflict
+#       - brew cask remove oclint || true
+#       - brew install gcc@6
+#       - ln -s /usr/local/opt/gcc\@6/bin/gfortran-6 /usr/local/bin/gfortran
