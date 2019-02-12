@@ -1,0 +1,2 @@
+#!/bin/sh
+export EXTRA_STAT_LIBS="-ltdl"

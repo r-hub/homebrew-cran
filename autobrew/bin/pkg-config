@@ -1,8 +1,8 @@
 #!/bin/sh
 # Masks 'pkg-config' from PATH to always use static options
 if [[ "$@" == *"--libs"* ]]; then
-${BREWDIR}/opt/pkg-config/bin/pkg-config --static "$@" "$EXTRA_PKG_CONFIG_LIBS" \
-	| sed 's#-lodbc#-lodbc -lltdl#g'
+PC_STAT_LIBS=$(${BREWDIR}/opt/pkg-config/bin/pkg-config --static "$@" "$EXTRA_PKG_CONFIG_LIBS")
+echo "$PC_STAT_LIBS $EXTRA_STAT_LIBS"
 else
 ${BREWDIR}/opt/pkg-config/bin/pkg-config "$@"
 fi
