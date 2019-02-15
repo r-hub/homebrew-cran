@@ -1,15 +1,14 @@
 class Libssh < Formula
   desc "C library SSHv1/SSHv2 client and server protocols"
   homepage "https://www.libssh.org/"
-  url "https://www.libssh.org/files/0.8/libssh-0.8.3.tar.xz"
-  sha256 "302f31f606f2368cd3ce77d7a69f7464c18eae176e73e59102e0524401bd29d0"
+  url "https://www.libssh.org/files/0.8/libssh-0.8.6.tar.xz"
+  sha256 "1046b95632a07fc00b1ea70ee683072d0c8a23f544f4535440b727812002fd01"
   head "https://git.libssh.org/projects/libssh.git"
 
   bottle do
     cellar :any
-    rebuild 1
     root_url "https://jeroen.github.io/bottles"
-    sha256 "1cedc727e0f96a9afda5f4817be1c20a288ffa1fb41e8b85f7d9ae09af578aae" => :el_capitan
+    sha256 "c9429b81061da732ba093ee64ad7ff8d98f3b49bb6cc14a26b654970a0391d36" => :el_capitan
   end
 
   depends_on "cmake" => :build
