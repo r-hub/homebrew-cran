@@ -44,7 +44,6 @@ cran_tap(){
 	else
 		$BREW tap r-hub/cran
 	fi
-	$BREW tap-pin r-hub/cran 2>/dev/null || true
 }
 
 for arg in "$@"; do
@@ -123,8 +122,8 @@ if [ -z "$AUTOBREW_NOSYSREQ" ]; then
 			if [ -f "${TAPDIR}/altinst/${PKG}" ]; then
 				PKG=$(<${TAPDIR}/altinst/${PKG})
 			fi
-			PKG_DEPS=$(${BREW} deps -n ${PKG}) # Workaround to install from pinned tap
-			${BREW} ls ${PKG} --versions || ${BREW} install --ignore-dependencies ${PKG_DEPS} ${PKG}
+			PKG_DEPS=$(${BREW} deps -n ${PKG})
+			${BREW} ls ${PKG} --versions || ${BREW} install ${PKG_DEPS} ${PKG}
 			if [ -f "${TAPDIR}/postinst/${PKG}" ]; then
 				source "${TAPDIR}/postinst/${PKG}" || true
 			fi
