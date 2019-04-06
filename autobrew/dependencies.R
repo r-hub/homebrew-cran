@@ -6,6 +6,9 @@ setRepositories(ind = 1:4)
 info <- as.list(read.dcf(DESCRIPTION)[1,])
 names(info) <- tolower(names(info))
 
+# Always use binary packages on Windows / Mac
+options(pkgType = ifelse(grepl("mingw|darwin", R.Version()$platform), "binary", "source"))
+
 # Install R packages
 pkgs <- c("curl", "jsonlite", "remotes")
 needs_install <- is.na(match(pkgs, row.names(installed.packages())))
