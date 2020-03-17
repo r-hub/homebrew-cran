@@ -3,6 +3,7 @@ class Autobrew < Formula
   homepage "https://github.com/r-hub/homebrew-cran"
   url "https://github.com/r-hub/homebrew-cran.git"
   bottle :unneeded
+  version '0.1'
 
   conflicts_with "r", :because => "Only the official R for OSX supports binary packages. Don't use R from Homebrew."
   depends_on "rename"
