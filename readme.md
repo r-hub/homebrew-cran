@@ -1,4 +1,11 @@
-# AutoBrew
+# Superseded
+
+This project is superseded by the autobrew organization on GitHub: https://github.com/autobrew
+
+---
+
+
+# Old content
 
 [![Build Status](https://travis-ci.org/r-hub/homebrew-cran.svg?branch=master)](https://travis-ci.org/r-hub/homebrew-cran)
 ![beta](https://img.shields.io/badge/status-beta-orange.svg)
